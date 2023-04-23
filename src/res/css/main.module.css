@@ -1,0 +1,310 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #eceff1;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    transition: 0.2s all;
+    color: var(--black);
+    min-width: 300px;
+    word-wrap: break-word;
+    --headerHeight: 70px;
+}
+
+.mainBodyWrapper {
+    height: calc(100vh - var(--headerHeight));
+    position: relative;
+    top: var(--headerHeight);
+}
+
+.mainBody {
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    transition: 0.25s all;
+    min-height: calc(80vh - var(--headerHeight));
+}
+
+.container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    box-shadow: 0 1px 8px 0 rgb(60 64 67 / 10%);
+    transition: 0.4s all;
+}
+
+@media screen and (max-width: 768px) {
+    .mainBody {
+        padding: 20px;
+    }
+
+    .container {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    body {
+        background-color: white;
+    }
+
+    .mainBody {
+        padding: 0;
+    }
+
+    .container {
+        width: 100%;
+        box-shadow: none;
+        padding: 25px;
+    }
+
+    .header {
+        padding: 0 20px;
+    }
+}
+
+.homepageContainer {
+    background-color: white;
+    width: 100%;
+    min-height: calc(100vh - var(--headerHeight));
+    text-align: center;
+}
+
+.homepageHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 70px 70px 0 70px;
+    transition: all 0.2s;
+}
+
+@media screen and (max-width: 500px) {
+    .homepageHeader {
+        padding: 30px 30px 0 30px;
+    }
+}
+
+.titleExploreQuran {
+    font-size: 40px;
+    font-weight: 300;
+}
+
+.introLinks {
+    display: flex;
+    justify-content: space-between;
+}
+
+.downloadButton {
+    font-size: 25px;
+    padding: 15px 30px;
+    border-radius: 50px;
+    background-color: var(--colorPrimary);
+    color: white !important;
+    transition: background-color 0.2s;
+    margin-top: 30px;
+    box-shadow: 0 2px 6px 1px rgb(60 64 67 / 30%);
+}
+
+.downloadButton:hover {
+    background-color: var(--colorPrimaryDark);
+}
+
+.githubButton {
+    font-size: 25px;
+    padding: 15px 30px;
+    border-radius: 50px;
+    background-color: #353535;
+    color: white !important;
+    transition: background-color 0.2s;
+    margin-top: 30px;
+    box-shadow: 0 2px 6px 1px rgb(60 64 67 / 30%);
+    margin-left: 10px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.githubButton:hover {
+    background-color: black;
+}
+
+.githubButton svg {
+    margin-right: 10px;
+}
+
+.showcase {
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+    transition: all 0.2s;
+}
+
+.showcase .showcaseCol {
+    width: 50%;
+    margin: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 30px;
+    background-color: rgb(212 175 55 / 40%);
+    transition: all 0.2s;
+}
+
+.showcase img {
+    width: 300px;
+    pointer-events: none;
+}
+
+.showcase .showcaseTitle {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 20px;
+}
+
+.showcaseTableWrapper {
+    padding: 0 30px 30px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.showcaseTable {
+    max-width: 700px;
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 20px;
+    gap: 15px;
+    transition: all 0.2s;
+}
+
+.showcaseTable .showcaseItem {
+    box-shadow: 0 1px 8px 0 rgb(60 64 67 / 30%);
+    overflow: hidden;
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    align-items: center;
+}
+
+.showcaseTable .showcaseItemTitle {
+    padding: 15px 0 15px 20px;
+    font-weight: 500;
+    flex-grow: 1;
+}
+
+.showcaseTable .showcaseItemDescription {
+    margin-top: 7px;
+    font-size: 15px;
+    font-weight: normal;
+    color: #686868;
+}
+
+.showcaseTable .showcaseItemTick svg {
+    fill: var(--colorPrimary);
+}
+
+.titleSalientFeatures {
+    padding: 20px;
+    font-weight: 500;
+    font-size: 21px;
+    text-align: center;
+    color: var(--colorPrimary);
+}
+
+@media screen and (max-width: 768px) {
+    .showcaseTable {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .showcase {
+        flex-direction: column;
+        align-items: center;
+        padding: 50px 0;
+    }
+
+    .showcase .showcaseCol {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .showcaseTable {
+        margin: 0;
+    }
+
+    .introLinks {
+        flex-direction: column;
+    }
+
+    .githubButton {
+        margin-left: 0;
+    }
+}
+
+.snackBar {
+    width: 300px;
+    position: fixed;
+    left: 40px;
+    opacity: 1;
+    bottom: 40px;
+    background-color: white;
+    box-shadow: 0 3px 10px 0 rgb(0 0 0 / 35%);
+    padding: 20px 40px 20px 20px;
+    border-radius: 12px;
+    border: 2px solid var(--colorPrimaryAlpha30);
+    animation: snackBar-reveal 0.7s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+.snackBar.concealing {
+    animation: snackBar-conceal 0.5s linear forwards;
+}
+
+@keyframes snackBar-reveal {
+    from {
+        bottom: 0;
+        opacity: 0.5;
+    }
+}
+
+@keyframes snackBar-conceal {
+    to {
+        bottom: -100%;
+        opacity: 0.5;
+    }
+}
+
+.snackBar .closeSnackBar {
+    position: absolute;
+    top: 17px;
+    right: 15px;
+    width: 24px;
+    height: 24px;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: #f3f3f3;
+}
+
+.snackBar .closeSnackBar:hover {
+    background-color: #e0e0e0;
+}
+
+.snackBar .closeSnackBar:active {
+    transform: scale(0.85);
+}
+
+.snackBar .closeSnackBar svg {
+    fill: var(--black3);
+}

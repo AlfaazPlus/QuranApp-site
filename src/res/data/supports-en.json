@@ -1,0 +1,123 @@
+{
+    "supports": {
+        "202201101": {
+            "id": 202201101,
+            "category": "Interface",
+            "title": "App Language",
+            "contents": [
+                {
+                    "content": "You can change the app language using following steps:",
+                    "steps": [
+                        "Click on the <strong>Menu icon</strong> in the top right corner of the app.",
+                        "Click on <strong>Settings</strong>.",
+                        "Under app settings, click on the <strong>App Language</strong> option.",
+                        "Select the language you want to use.",
+                        "Click on the <strong>Check Icon</strong> on the top right corner.",
+                        "Confirm the changes."
+                    ]
+                }
+            ]
+        },
+        "202201102": {
+            "id": 202201102,
+            "category": "Interface",
+            "title": "App Theme",
+            "contents": [
+                {
+                    "content": "You can change the app theme using following steps:",
+                    "steps": [
+                        "Click on the <strong>Menu icon</strong> in the top right corner of the app.",
+                        "Click on <strong>Settings</strong>.",
+                        "Under app settings, click on the <strong>Theme</strong> option.",
+                        "Select the theme you want to use."
+                    ]
+                }
+            ]
+        },
+        "202201103": {
+            "id": 202201103,
+            "category": "Feature",
+            "title": "Verse of the Day",
+            "contents": [
+                {
+                    "content": "QuranApp offers Verse of the Day feature which notifies you a verse from the Qur'an daily in the morning. You can turn verse of the day on/off using following steps:",
+                    "steps": [
+                        "Click on the <strong>Menu icon</strong> in the top right corner of the app.",
+                        "Click on <strong>Settings</strong>.",
+                        "Under app settings, click on the <strong>Verse of the Day</strong> option.",
+                        "Select on/off."
+                    ]
+                }
+            ]
+        },
+        "202201104": {
+            "id": 202201104,
+            "category": "Reader",
+            "title": "Translations",
+            "contents": [
+                {
+                    "content": "QuranApp offers several translations in different languages. It allows you to select and read multiple translations simultaneously. You can select multiple translations using following steps:",
+                    "steps": [
+                        "Click on the <strong>Menu icon</strong> in the top right corner of the app.",
+                        "Click on <strong>Settings</strong>.",
+                        "Under reader settings, click on the <strong>Translations</strong> option.",
+                        "Select the desired translations."
+                    ]
+                },
+                {
+                    "content": "You can also download more translations by clicking on the <strong>download icon</strong> on the top right corner."
+                }
+            ]
+        },
+        "202201105": {
+            "id": 202201105,
+            "category": "Reader",
+            "title": "Recitation",
+            "contents": [
+                {
+                    "content": "You can select reciter using following steps:",
+                    "steps": [
+                        "Click on the <strong>Menu icon</strong> in the top right corner of the app.",
+                        "Click on <strong>Settings</strong>.",
+                        "Under reader settings, click on the <strong>Select Reciter</strong> option.",
+                        "Select the desired reciter."
+                    ]
+                },
+                {
+                    "content": "You can also change reciter from the reader. To do this, Click on the <strong>Menu icon</strong> in the bottom right corner of the <strong>recitation player</strong>. Then, <strong>Select Reciter</strong> &gt; Select the desired reciter."
+                }
+            ]
+        },
+        "202201106": {
+            "id": 202201106,
+            "category": "Reader",
+            "title": "Qur'an Fonts",
+            "contents": [
+                {
+                    "content": "QuranApp offers several Qura'n fonts which you can select using following steps:",
+                    "steps": [
+                        "Click on the <strong>Menu icon</strong> in the top right corner of the app.",
+                        "Click on <strong>Settings</strong>.",
+                        "Under reader settings, click on the <strong>Select Script</strong> option.",
+                        "Select the desired font. It will be globally applied."
+                    ]
+                }
+            ]
+        },
+        "202201107": {
+            "id": 202201107,
+            "category": "Reader",
+            "title": "Change Reader Font Size",
+            "contents": [
+                {
+                    "content": "You can customize font sizes of both arabic text and translations using following steps:",
+                    "steps": [
+                        "Click on the <strong>Menu icon</strong> in the top right corner of the app.",
+                        "Click on <strong>Settings</strong>.",
+                        "Scroll down to <strong>Text Size</strong> option. Drag <strong>Arabic text size</strong> to change the arabic text size and <strong>Translation text size</strong> to change the translations' text size"
+                    ]
+                }
+            ]
+        }
+    }
+}

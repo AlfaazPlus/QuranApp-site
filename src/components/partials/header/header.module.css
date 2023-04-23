@@ -1,0 +1,121 @@
+
+.header {
+    height: var(--headerHeight);
+    min-width: 300px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    padding: 0 30px;
+    box-shadow: 0 1px 8px 0 rgb(60 64 67 / 10%);
+    transition: 0.2s all;
+}
+
+.header.homepage {
+    justify-content: center;
+}
+
+.header .headerLeftLogo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: initial;
+}
+
+.header .headerLeftLogo img {
+    height: 40px;
+    pointer-events: none;
+}
+
+.header .appTitle {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.header .appTitle .name {
+    font-size: 27px;
+    font-weight: 900;
+}
+
+.header .appTitle .tagline {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--black2);
+    letter-spacing: 0.08rem;
+}
+
+.header .headerRight {
+    flex-grow: 1;
+}
+
+.header.homepage .headerRight {
+    display: none;
+}
+
+.header .headerRightMenu {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.header .menuItem {
+    color: #000;
+    padding: 10px 15px;
+    margin: 0 5px;
+    border-radius: 20px;
+    background-color: #eeeeee;
+    display: flex;
+    align-items: center;
+}
+
+
+.header .menuItem svg {
+    margin-right: 5px
+}
+
+.header .menuItem:hover,
+.header .menuItem.active {
+    background-color: var(--colorPrimary);
+    color: var(--white);
+}
+
+.header .menuItem.download {
+    background-color: var(--colorPrimary);
+    color: var(--white);
+    font-weight: 500;
+}
+
+.header .menuItem.download:hover {
+    background-color: var(--colorPrimaryDark);
+}
+
+.header .menuItem.github {
+    background-color: #353535;
+    color: var(--white);
+    font-weight: 500;
+}
+
+.header .menuItem.github:hover {
+    background-color: black;
+}
+
+
+.header .headerRight .menuIcon {
+    width: 40px;
+    height: 40px;
+    float: right;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.header .headerRight .menuIcon:hover {
+    background-color: #eeeeee;
+}

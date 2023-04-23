@@ -1,0 +1,46 @@
+.materialProgressBar_root {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    color: currentColor;
+    -webkit-animation: animationMaterialLoaderRoot 1.4s linear infinite;
+    animation: animationMaterialLoaderRoot 1.4s linear infinite;
+}
+
+.materialProgressBar_svg {
+    display: block;
+}
+
+.materialProgressBar_svg_circle {
+    stroke: currentColor;
+    stroke-dasharray: 80px, 200px;
+    stroke-dashoffset: 0;
+    -webkit-animation: animationMaterialLoaderCircle 1.4s ease-in-out infinite;
+    animation: animationMaterialLoaderCircle 1.4s ease-in-out infinite;
+}
+
+@keyframes animationMaterialLoaderRoot {
+    0% {
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes animationMaterialLoaderCircle {
+    0% {
+        stroke-dasharray: 1px, 200px;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 100px, 200px;
+        stroke-dashoffset: -15px;
+    }
+    100% {
+        stroke-dasharray: 100px, 200px;
+        stroke-dashoffset: -125px;
+    }
+}

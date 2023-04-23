@@ -1,0 +1,29 @@
+
+.footer {
+    background-color: #202020;
+    color: var(--white);
+    padding: 30px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.googlePlayLink img {
+    height: 70px;
+}
+
+.downloadButtonSecondary {
+    font-size: 19px;
+    padding: 10px 20px;
+    border-radius: 50px;
+    background-color: var(--colorPrimary);
+    color: white !important;
+    transition: background-color 0.2s;
+    margin: 20px 0;
+}
+
+.downloadButtonSecondary:hover{
+    background-color: var(--colorPrimaryDark);
+}

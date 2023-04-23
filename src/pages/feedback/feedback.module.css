@@ -1,0 +1,123 @@
+.feedbackContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h3,
+h4 {
+    margin: 10px 0;
+}
+
+.pageTitle {
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pageTitle h3 {
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.pageTitle a {
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.feedbackForm {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.feedbackForm .requiredFieldMark {
+    color: red;
+}
+
+.feedbackForm .group {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.feedbackForm .groupTitle {
+    margin-left: 5px;
+    font-size: 15px;
+    margin-bottom: 10px;
+    color: #7a7a7a;
+}
+
+.feedbackForm input,
+.feedbackForm textarea,
+.feedbackForm select {
+    width: 100%;
+    background-color: transparent;
+    border: 2px solid #e6e6e6;
+    font-family: "Roboto", sans-serif;
+    border-radius: 7px;
+    padding: 10px;
+    font-size: 16px;
+    resize: none;
+    font-weight: 500;
+}
+
+.feedbackForm select {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.feedbackForm .selectWrapper {
+    position: relative;
+}
+
+.feedbackForm .selectWrapper::after {
+    pointer-events: none;
+    content: "▾";
+    font-size: 22px;
+    color: rgb(134, 134, 134);
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    position: absolute;
+}
+
+.feedbackForm select > option {
+    padding: 10px;
+    font-size: 16px;
+}
+
+.feedbackForm textarea {
+    height: 180px;
+}
+
+.feedbackForm input:focus,
+.feedbackForm textarea:focus,
+.feedbackForm select:focus {
+    border-color: var(--colorPrimary);
+}
+
+.feedbackForm .error .groupTitle {
+    color: red;
+}
+
+.feedbackForm .error input,
+.feedbackForm .error textarea,
+.feedbackForm .error select {
+    border-color: red;
+}
+
+.feedbackForm .fieldRequiredMsg {
+    color: red;
+    font-size: 13px;
+    font-weight: normal;
+    margin: 5px 0 0 5px;
+}

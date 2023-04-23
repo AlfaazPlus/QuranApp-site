@@ -1,0 +1,173 @@
+.supportHeader {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.supportHeader .back {
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.supportHeader .back:hover {
+    background-color: #eeeeee;
+}
+
+.supportIndexPage .supportTitle {
+    font-size: 27px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.supportIndexPage .supportTitle span {
+    font-weight: 300;
+}
+
+.supportPage .supportTitle {
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 60px;
+}
+
+.supportPage .supportTitle span {
+    font-weight: 300;
+}
+
+.searchBoxContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchBoxContainer .searchInput {
+    width: 100%;
+    max-width: 500px;
+    border: 2px solid #e9e9e9;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 17px;
+    box-shadow: 0 1px 8px 0 rgb(60 64 67 / 10%);
+}
+
+.searchResultContainer {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    padding: 20px;
+    transition: all 0.2s;
+}
+
+@media screen and (max-width: 768px) {
+    .searchResultContainer {
+        grid-template-columns: auto;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .searchResultContainer {
+        padding: 20px 0;
+    }
+}
+
+.searchResultContainer .searchResultLink {
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 1px 8px 0 rgb(60 64 67 / 5%);
+    overflow: hidden;
+    transition: all 0.2s;
+    border: 2px solid #e2e2e2;
+}
+
+.searchResultContainer .searchResultLink:hover {
+    box-shadow: 0 0 8px 0 rgb(60 64 67 / 25%);
+}
+
+.searchResultContainer .searchResult {
+    width: 100%;
+    padding: 15px 20px;
+}
+
+.searchResultContainer .searchResult .searchResultTitle {
+    color: black;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.searchResultContainer .searchResult .searchResultContentText {
+    margin-top: 10px;
+    color: #2c2c2c;
+    font-size: 15px;
+}
+
+.supportPageContent {
+    padding: 20px;
+}
+
+.supportPageContent .supportContentTitle {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.supportPageContent .content p {
+    margin: 15px 0;
+}
+
+.supportPageContent .stepsContainer {
+    list-style: none;
+    margin: 10px 0;
+}
+
+.supportPageContent .stepsContainer .step {
+    margin: 5px 0;
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.supportPageContent .stepsContainer .stepText {
+    background-color: white;
+    color: #2c2c2c;
+    border-radius: 8px;
+    padding: 3px 5px;
+    font-weight: bold;
+    width: max-content;
+    margin-bottom: 7px;
+}
+
+.betaLabel {
+    font-size: 12px;
+    margin-left: 5px;
+    background-color: #730707;
+    border-radius: 10px;
+    color: white;
+    padding: 2px 8px;
+}
+
+@media screen and (max-width: 450px) {
+    .supportPage .supportPageContent {
+        padding: 20px 0;
+    }
+
+    .supportPage .supportHeader {
+        margin-bottom: 5px;
+    }
+
+    .supportPage .supportHeader .back {
+        left: -15px;
+    }
+
+    .supportPage .supportTitle {
+        font-size: 17px !important;
+        font-weight: bold !important;
+        margin-left: 30px !important;
+    }
+}
