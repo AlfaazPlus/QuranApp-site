@@ -1269,21 +1269,6 @@
           .getElementById("sun-icon-mobile")
           .classList.toggle("hidden", !isDarkMode);
       }
-
-      // redirect to hash path
-      window.addEventListener('load', function () {
-        const pathToHashMap = {
-          '/support': '#support',
-          '/privacy-policy': '#privacy',
-          '/about': '#about',
-          '/feedback': '#support',
-        };
-
-        const path = window.location.pathname;
-        if (pathToHashMap[path]) {
-          window.location = window.location.origin + pathToHashMap[path];
-        }
-      });
     </script>
 </body>
 
