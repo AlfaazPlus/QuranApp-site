@@ -1,8 +1,6 @@
-#
 # QuranApp-site
 
-## Description
-This is the source code for the QuranApp website, providing access to the Holy Qur'an and related resources.
+This repository hosts the source code for the QuranApp website, providing users with access to the Holy Qur'an and related resources.
 
 ## Contribution
 If you want to contribute, fork the repository, make your changes, and submit a pull request.
