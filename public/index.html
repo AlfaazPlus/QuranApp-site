@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuranApp - Read, Listen, and Understand the Qur'an Privately</title>
+  <meta name="description" content="A privacy-focused Quran app with no ads, tracking, or data collection. Featuring 30+ translations and 15+ recitations.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.ico">
+  
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:title" content="QuranApp - Read, Listen, and Understand the Qur'an Privately">
+  <meta property="og:description" content="A privacy-focused Quran app with no ads, tracking, or data collection. Featuring 30+ translations and 15+ recitations.">
+  <meta property="og:image" content="og-image.png">
+  <meta property="og:url" content="https://quranapp.example.com">
+  <meta property="og:type" content="website">
+  
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="QuranApp - Read, Listen, and Understand the Qur'an Privately">
+  <meta name="twitter:description" content="A privacy-focused Quran app with no ads, tracking, or data collection. Featuring 30+ translations and 15+ recitations.">
+  <meta name="twitter:image" content="og-image.png">
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS from CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            outfit: ['Outfit', 'sans-serif'],
+            amiri: ['Amiri', 'serif']
+          },
+          colors: {
+            quran: {
+              DEFAULT: '#1E5128',
+              50: '#F5FBF6',
+              100: '#E0F0E3',
+              200: '#B3D8BA',
+              300: '#85BF91',
+              400: '#4D9E5F',
+              500: '#1E5128',
+              600: '#184720',
+              700: '#123418',
+              800: '#0C2210',
+              900: '#061108',
+              foreground: '#ffffff'
+            },
+            gold: {
+              DEFAULT: '#D4AF37',
+              light: '#F8EFD4',
+              dark: '#A08429'
+            }
+          }
+        }
+      }
+    };
+  </script>
+  
+  <!-- Lovable Script - REQUIRED -->
+  <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+  
+  <style type="text/css">
+    /* Base Styles */
+    .section-title {
+      @apply text-3xl md:text-4xl font-bold mb-6 text-quran-500 relative;
+    }
+    
+    .section-title::after {
+      content: "";
+      @apply block w-20 h-1 bg-quran mt-2;
+    }
+    
+    .feature-card {
+      @apply bg-white dark:bg-gray-800 rounded-lg p-6 transition-all duration-300 hover:shadow-lg border border-gray-200 dark:border-gray-700;
+    }
+    
+    .nav-link {
+      @apply relative text-gray-600 dark:text-gray-300 hover:text-quran dark:hover:text-quran-300 transition-colors duration-200 after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-quran after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left;
+    }
+
+    .nav-link.active {
+      @apply text-quran dark:text-quran-300 after:scale-x-100;
+    }
+  </style>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+  <!-- Header -->
+  <header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center">
+          <a class="flex-shrink-0" href="/">
+            <img class="h-8 w-auto" src="logo.svg" alt="QuranApp" />
+          </a>
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-4">
+              <a href="#home" class="nav-link active" aria-current="page">Home</a>
+              <a href="#features" class="nav-link">Features</a>
+              <a href="#faq" class="nav-link">FAQ</a>
+              <a href="#settings-guide" class="nav-link">Settings Guide</a>
+              <a href="#feedback" class="nav-link">Feedback</a>
+            </div>
+          </div>
+        </div>
+        <div class="hidden md:block">
+          <div class="ml-4 flex items-center md:ml-6">
+            <button id="theme-toggle" class="p-2 rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+              <svg id="moon-icon" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+              </svg>
+              <svg id="sun-icon" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.364 6.364l-.707-.707m12.728 0l-.707.707M6.364 17.636l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="-mr-2 flex md:hidden">
+          <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg id="menu-icon" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="close-icon" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+    
+    <div class="md:hidden" id="mobile-menu">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <a href="#home" class="text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Home</a>
+        <a href="#features" class="text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium">Features</a>
+        <a href="#faq" class="text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium">FAQ</a>
+        <a href="#settings-guide" class="text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium">Settings Guide</a>
+        <a href="#feedback" class="text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium">Feedback</a>
+      </div>
+      <div class="pt-4 pb-3 border-t border-gray-700">
+        <div class="px-5">
+          <button id="theme-toggle-mobile" class="p-2 rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+            <svg id="moon-icon-mobile" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+            <svg id="sun-icon-mobile" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.364 6.364l-.707-.707m12.728 0l-.707.707M6.364 17.636l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="pt-32 pb-20 md:pt-44 md:pb-32">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row items-center gap-12">
+          <div class="flex-1">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight text-gray-900 dark:text-white mb-6">
+              QuranApp – Read, Listen, and Understand the <span class="text-quran dark:text-quran-300 font-amiri">Qur'an</span> Privately.
+            </h1>
+            <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">
+              A privacy-focused app with no ads, tracking, or data collection. Featuring 30+ translations and 15+ recitations.
+            </p>
+            <div class="flex flex-wrap gap-4 mb-10">
+              <a href="#" class="bg-quran hover:bg-quran-600 text-white font-bold py-3 px-6 rounded-lg transition-colors">
+                Google Play
+              </a>
+              <a href="#" class="bg-transparent border border-quran text-quran hover:bg-quran-50 dark:hover:bg-gray-800 font-bold py-3 px-6 rounded-lg transition-colors">
+                IzzyOnDroid
+              </a>
+              <a href="#" class="bg-transparent border border-quran text-quran hover:bg-quran-50 dark:hover:bg-gray-800 font-bold py-3 px-6 rounded-lg transition-colors">
+                Direct APK
+              </a>
+            </div>
+            <a id="explore-features" href="#" class="flex items-center text-quran dark:text-quran-300 hover:text-quran-600 dark:hover:text-quran-200 transition-colors">
+              Explore Features
+              <svg class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </a>
+          </div>
+          <div class="flex-1 flex justify-center lg:justify-end">
+            <img src="app-preview.png" alt="QuranApp Preview" class="rounded-lg shadow-lg w-64 md:w-80" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="py-20 bg-gray-50 dark:bg-gray-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="section-title text-center">Key Features</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="feature-card">
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Privacy Focused</h3>
+            <p class="text-gray-700 dark:text-gray-400">No ads, tracking, or data collection. Your privacy is our top priority.</p>
+          </div>
+          <div class="feature-card">
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Multiple Translations</h3>
+            <p class="text-gray-700 dark:text-gray-400">Access over 30+ translations in various languages to understand the Quran's message.</p>
+          </div>
+          <div class="feature-card">
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Various Recitations</h3>
+            <p class="text-gray-700 dark:text-gray-400">Listen to over 15+ recitations from renowned reciters around the world.</p>
+          </div>
+          <div class="feature-card">
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Offline Access</h3>
+            <p class="text-gray-700 dark:text-gray-400">Download translations and recitations for offline access, allowing you to read and listen without an internet connection.</p>
+          </div>
+          <div class="feature-card">
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Customizable Interface</h3>
+            <p class="text-gray-700 dark:text-gray-400">Customize the app's interface with various themes, font sizes, and reading modes to suit your preferences.</p>
+          </div>
+          <div class="feature-card">
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Search Functionality</h3>
+            <p class="text-gray-700 dark:text-gray-400">Easily search for specific verses, topics, or keywords within the Quran to quickly find the information you need.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="section-title text-center">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          <div class="faq-item">
+            <button class="faq-question w-full text-left py-3 px-4 bg-gray-100 dark:bg-gray-800 rounded-md flex items-center justify-between">
+              <span class="font-semibold text-gray-900 dark:text-gray-100">Is QuranApp really private?</span>
+              <svg class="chevron-down h-5 w-5 text-gray-500 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+              <svg class="chevron-up h-5 w-5 text-gray-500 dark:text-gray-400 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+              </svg>
+            </button>
+            <div class="faq-answer bg-gray-50 dark:bg-gray-700 py-3 px-4 rounded-md hidden">
+              <p class="text-gray-700 dark:text-gray-300">Yes, QuranApp is designed with privacy in mind. We do not collect any personal data, track your usage, or display any advertisements.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question w-full text-left py-3 px-4 bg-gray-100 dark:bg-gray-800 rounded-md flex items-center justify-between">
+              <span class="font-semibold text-gray-900 dark:text-gray-100">How often are new translations and recitations added?</span>
+              <svg class="chevron-down h-5 w-5 text-gray-500 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+              <svg class="chevron-up h-5 w-5 text-gray-500 dark:text-gray-400 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+              </svg>
+            </button>
+            <div class="faq-answer bg-gray-50 dark:bg-gray-700 py-3 px-4 rounded-md hidden">
+              <p class="text-gray-700 dark:text-gray-300">We regularly update QuranApp with new translations and recitations. The frequency of updates depends on the availability of quality content.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question w-full text-left py-3 px-4 bg-gray-100 dark:bg-gray-800 rounded-md flex items-center justify-between">
+              <span class="font-semibold text-gray-900 dark:text-gray-100">Can I contribute to QuranApp?</span>
+              <svg class="chevron-down h-5 w-5 text-gray-500 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+              <svg class="chevron-up h-5 w-5 text-gray-500 dark:text-gray-400 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+              </svg>
+            </button>
+            <div class="faq-answer bg-gray-50 dark:bg-gray-700 py-3 px-4 rounded-md hidden">
+              <p class="text-gray-700 dark:text-gray-300">Yes, we welcome contributions from the community. You can contribute by submitting new translations, reporting issues, or suggesting new features.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="settings-guide" class="py-20 bg-gray-50 dark:bg-gray-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="section-title text-center">Settings Guide</h2>
+        <div class="space-y-4">
+          <div class="guide-item">
+            <button class="guide-question w-full text-left py-3 px-4 bg-gray-100 dark:bg-gray-700 rounded-md flex items-center justify-between">
+              <span class="font-semibold text-gray-900 dark:text-gray-100">How to change the app theme?</span>
+              <svg class="chevron-down h-5 w-5 text-gray-500 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+              <svg class="chevron-up h-5 w-5 text-gray-500 dark:text-gray-400 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+              </svg>
+            </button>
+            <div class="guide-answer bg-gray-50 dark:bg-gray-700 py-3 px-4 rounded-md hidden">
+              <p class="text-gray-700 dark:text-gray-300">To change the app theme, navigate to the settings menu and select your preferred theme from the available options.</p>
+            </div>
+          </div>
+          <div class="guide-item">
+            <button class="guide-question w-full text-left py-3 px-4 bg-gray-100 dark:bg-gray-700 rounded-md flex items-center justify-between">
+              <span class="font-semibold text-gray-900 dark:text-gray-100">How to download translations for offline access?</span>
+              <svg class="chevron-down h-5 w-5 text-gray-500 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+              <svg class="chevron-up h-5 w-5 text-gray-500 dark:text-gray-400 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+              </svg>
+            </button>
+            <div class="guide-answer bg-gray-50 dark:bg-gray-700 py-3 px-4 rounded-md hidden">
+              <p class="text-gray-700 dark:text-gray-300">To download translations for offline access, go to the translations section and select the translations you want to download. Once downloaded, you can access them without an internet connection.</p>
+            </div>
+          </div>
+          <div class="guide-item">
+            <button class="guide-question w-full text-left py-3 px-4 bg-gray-100 dark:bg-gray-700 rounded-md flex items-center justify-between">
+              <span class="font-semibold text-gray-900 dark:text-gray-100">How to adjust the font size?</span>
+              <svg class="chevron-down h-5 w-5 text-gray-500 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+              <svg class="chevron-up h-5 w-5 text-gray-500 dark:text-gray-400 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+              </svg>
+            </button>
+            <div class="guide-answer bg-gray-50 dark:bg-gray-700 py-3 px-4 rounded-md hidden">
+              <p class="text-gray-700 dark:text-gray-300">You can adjust the font size in the settings menu. Choose a font size that is comfortable for you.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="feedback" class="py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="section-title text-center">Feedback</h2>
+        <div class="max-w-md mx-auto">
+          <form id="feedback-form" class="space-y-4">
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Name</label>
+              <input type="text" id="name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-quran focus:ring-quran dark:bg-gray-700 dark:border-gray-600 dark:text-white" required />
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
+              <input type="email" id="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-quran focus:ring-quran dark:bg-gray-700 dark:border-gray-600 dark:text-white" required />
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Message</label>
+              <textarea id="message" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-quran focus:ring-quran dark:bg-gray-700 dark:border-gray-600 dark:text-white" required></textarea>
+            </div>
+            <div>
+              <button type="submit" class="w-full bg-quran hover:bg-quran-600 text-white font-bold py-3 px-6 rounded-lg transition-colors">Submit Feedback</button>
+            </div>
+          </form>
+          <p id="feedback-message" class="mt-4 text-green-500 text-center hidden">Thank you for your feedback!</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 dark:bg-gray-800 pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div>
+          <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">About QuranApp</h4>
+          <p class="text-gray-600 dark:text-gray-300">QuranApp is a privacy-focused app designed to help you read, listen, and understand the Quran without any ads, tracking, or data collection.</p>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Quick Links</h4>
+          <ul class="space-y-2">
+            <li>
+              <a href="#home" class="text-gray-600 dark:text-gray-300 hover:text-quran dark:hover:text-quran-300 transition-colors">Home</a>
+            </li>
+            <li>
+              <a href="#features" class="text-gray-600 dark:text-gray-300 hover:text-quran dark:hover:text-quran-300 transition-colors">Features</a>
+            </li>
+            <li>
+              <a href="#faq" class="text-gray-600 dark:text-gray-300 hover:text-quran dark:hover:text-quran-300 transition-colors">FAQ</a>
+            </li>
+            <li>
+              <a href="#settings-guide" class="text-gray-600 dark:text-gray-300 hover:text-quran dark:hover:text-quran-300 transition-colors">Settings Guide</a>
+            </li>
+            <li>
+              <a href="#feedback" class="text-gray-600 dark:text-gray-300 hover:text-quran dark:hover:text-quran-300 transition-colors">Feedback</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Download</h4>
+          <ul class="space-y-2">
+            <li>
+              <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-quran dark:hover:text-quran-300 transition-colors">Google Play</a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-quran dark:hover:text-quran-300 transition-colors">F-Droid</a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-quran dark:hover:text-quran-300 transition-colors">GitHub</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Contact</h4>
+          <ul class="space-y-2">
+            <li>
+              <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-quran dark:hover:text-quran-300 transition-colors">Email</a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-quran dark:hover:text-quran-300 transition-colors">GitHub</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+        <p class="text-gray-600 dark:text-gray-300 text-center">© 2023 QuranApp. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="js/app.js"></script>
+</body>
+</html>
