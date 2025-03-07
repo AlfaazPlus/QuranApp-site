@@ -1,0 +1,1057 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuranApp - Read, Listen, and Understand the Qur'an Privately</title>
+  <meta name="description" content="Privacy-focused QuranApp with no ads, tracking, or data collection. Features 30+ translations, 15+ recitations, and offline support.">
+  <meta name="author" content="QuranApp Team">
+  <meta property="og:image" content="/og-image.png">
+  <meta property="og:title" content="QuranApp - Privacy-Focused Qur'an Reader">
+  <meta property="og:description" content="Read, listen, and understand the Qur'an privately with no ads or tracking.">
+  <meta name="theme-color" content="#1E5128">
+  
+  <!-- Tailwind CSS from CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap">
+  
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            outfit: ['Outfit', 'sans-serif'],
+            amiri: ['Amiri', 'serif']
+          },
+          colors: {
+            quran: {
+              DEFAULT: '#1E5128',
+              50: '#F5FBF6',
+              100: '#E0F0E3',
+              200: '#B3D8BA',
+              300: '#85BF91',
+              400: '#4D9E5F',
+              500: '#1E5128',
+              600: '#184720',
+              700: '#123418',
+              800: '#0C2210',
+              900: '#061108'
+            },
+            gold: {
+              DEFAULT: '#D4AF37',
+              light: '#F8EFD4',
+              dark: '#A08429'
+            }
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.4s ease-out',
+            'fade-in-up': 'fadeInUp 0.5s ease-out',
+            'scale-in': 'scaleIn 0.3s ease-out'
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' }
+            },
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(10px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' }
+            },
+            scaleIn: {
+              '0%': { opacity: '0', transform: 'scale(0.95)' },
+              '100%': { opacity: '1', transform: 'scale(1)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    body {
+      font-family: 'Outfit', sans-serif;
+    }
+    
+    .section-title {
+      @apply text-3xl md:text-4xl font-bold mb-6 text-quran relative;
+    }
+    
+    .section-title::after {
+      content: "";
+      @apply block w-20 h-1 bg-quran mt-2 mx-auto;
+    }
+    
+    .feature-card {
+      @apply bg-white dark:bg-gray-800 rounded-lg p-6 transition-all duration-300 hover:shadow-lg border border-gray-200 dark:border-gray-700;
+    }
+    
+    .nav-link {
+      @apply relative text-gray-600 dark:text-gray-300 hover:text-quran dark:hover:text-quran-300 transition-colors duration-200;
+    }
+    
+    .nav-link::after {
+      content: '';
+      @apply absolute w-full scale-x-0 h-0.5 bottom-0 left-0 bg-quran origin-bottom-right transition-transform duration-300;
+    }
+    
+    .nav-link:hover::after {
+      @apply scale-x-100 origin-bottom-left;
+    }
+    
+    .nav-link.active {
+      @apply text-quran dark:text-quran-300;
+    }
+    
+    .nav-link.active::after {
+      @apply scale-x-100;
+    }
+  </style>
+</head>
+
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+  <!-- Header -->
+  <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-20">
+        <!-- Logo -->
+        <div class="flex-shrink-0 flex items-center">
+          <span class="text-quran dark:text-quran-300 font-bold text-xl md:text-2xl font-amiri">
+            QuranApp
+          </span>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex space-x-6 items-center">
+          <a href="#home" class="nav-link active">Home</a>
+          <a href="#features" class="nav-link">Features</a>
+          <a href="#screenshots" class="nav-link">Screenshots</a>
+          <a href="#support" class="nav-link">Support</a>
+          <a href="#privacy" class="nav-link">Privacy</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#feedback" class="nav-link">Feedback</a>
+          <button id="theme-toggle" class="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none transition-colors">
+            <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          </button>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <div class="flex items-center md:hidden">
+          <button id="theme-toggle-mobile" class="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none transition-colors">
+            <svg id="sun-icon-mobile" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <svg id="moon-icon-mobile" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          </button>
+          <button id="mobile-menu-button" class="ml-3 inline-flex items-center justify-center p-2 rounded-md text-gray-700 dark:text-gray-200 hover:text-quran hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none">
+            <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+      <div class="pt-2 pb-3 space-y-1 px-4">
+        <a href="#home" class="block w-full text-left px-3 py-2 rounded-md font-medium text-quran dark:text-quran-300 bg-quran-50 dark:bg-gray-800">Home</a>
+        <a href="#features" class="block w-full text-left px-3 py-2 rounded-md font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800">Features</a>
+        <a href="#screenshots" class="block w-full text-left px-3 py-2 rounded-md font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800">Screenshots</a>
+        <a href="#support" class="block w-full text-left px-3 py-2 rounded-md font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800">Support</a>
+        <a href="#privacy" class="block w-full text-left px-3 py-2 rounded-md font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800">Privacy</a>
+        <a href="#about" class="block w-full text-left px-3 py-2 rounded-md font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800">About</a>
+        <a href="#feedback" class="block w-full text-left px-3 py-2 rounded-md font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800">Feedback</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 md:pt-44 md:pb-32">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row items-center gap-12">
+          <div class="flex-1 animate-fade-in-up">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight text-gray-900 dark:text-white mb-6">
+              QuranApp – Read, Listen, and Understand the
+              <span class="text-quran dark:text-quran-300 font-amiri">
+                Qur'an
+              </span>
+              Privately.
+            </h1>
+            
+            <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">
+              A privacy-focused app with no ads, tracking, or data collection.
+              Featuring 30+ translations and 15+ recitations.
+            </p>
+            
+            <div class="flex flex-wrap gap-4 mb-10">
+              <button class="px-4 py-2 bg-quran hover:bg-quran-600 text-white rounded-md transition-colors">
+                Google Play
+              </button>
+              <button class="px-4 py-2 border border-quran text-quran hover:bg-quran-50 dark:hover:bg-gray-800 rounded-md transition-colors">
+                IzzyOnDroid
+              </button>
+              <button class="px-4 py-2 border border-quran text-quran hover:bg-quran-50 dark:hover:bg-gray-800 rounded-md transition-colors">
+                Direct APK
+              </button>
+            </div>
+            
+            <button id="explore-features" class="flex items-center text-quran dark:text-quran-300 hover:text-quran-600 dark:hover:text-quran-200 transition-colors">
+              Explore Features
+              <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+            </button>
+          </div>
+          
+          <div class="flex-1 flex justify-center lg:justify-end animate-scale-in">
+            <div class="relative w-64 md:w-80 h-auto">
+              <div class="absolute -inset-1 bg-gradient-to-r from-quran to-gold rounded-xl blur-md opacity-50"></div>
+              <div class="relative bg-white dark:bg-gray-800 shadow-lg rounded-xl p-2">
+                <img
+                  src="https://placehold.co/300x600/1E5128/FFFFFF/png?text=QuranApp"
+                  alt="QuranApp Preview"
+                  class="rounded-lg w-full"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-gray-50 dark:bg-gray-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="section-title mx-auto">Features</h2>
+          <p class="mt-4 text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            QuranApp is designed with simplicity and privacy at its core, offering powerful features without compromising your data.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Feature 1 -->
+          <div class="feature-card" style="animation-delay: 0s;">
+            <div class="mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-quran" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-2">No Ads, No Tracking</h3>
+            <p class="text-gray-600 dark:text-gray-300">Completely free of advertisements, trackers, and unnecessary permissions.</p>
+          </div>
+          
+          <!-- Feature 2 -->
+          <div class="feature-card" style="animation-delay: 0.1s;">
+            <div class="mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-quran" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+                <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+                <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+                <line x1="12" y1="20" x2="12" y2="20"></line>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Offline Support</h3>
+            <p class="text-gray-600 dark:text-gray-300">Multiple translations and recitations available offline after initial download.</p>
+          </div>
+          
+          <!-- Feature 3 -->
+          <div class="feature-card" style="animation-delay: 0.2s;">
+            <div class="mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-quran" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Advanced Search & Tafsir</h3>
+            <p class="text-gray-600 dark:text-gray-300">Powerful search functionality and in-depth tafsir for deeper understanding.</p>
+          </div>
+          
+          <!-- Feature 4 -->
+          <div class="feature-card" style="animation-delay: 0.3s;">
+            <div class="mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-quran" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="13.5" cy="6.5" r="1.5"></circle>
+                <circle cx="17.5" cy="10.5" r="1.5"></circle>
+                <circle cx="8.5" cy="7.5" r="1.5"></circle>
+                <circle cx="6.5" cy="12.5" r="1.5"></circle>
+                <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Customizable UI</h3>
+            <p class="text-gray-600 dark:text-gray-300">Personalize with dark mode, font styles, and various layout options.</p>
+          </div>
+          
+          <!-- Feature 5 -->
+          <div class="feature-card" style="animation-delay: 0.4s;">
+            <div class="mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-quran" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Bookmarking & Reminders</h3>
+            <p class="text-gray-600 dark:text-gray-300">Save your favorite verses and set daily reading reminders.</p>
+          </div>
+          
+          <!-- Feature 6 -->
+          <div class="feature-card" style="animation-delay: 0.5s;">
+            <div class="mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-quran" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Privacy-First Approach</h3>
+            <p class="text-gray-600 dark:text-gray-300">All your data remains secure on your device, never uploaded to servers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Screenshots Section -->
+    <section id="screenshots" class="py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="section-title mx-auto">Screenshots</h2>
+          <p class="mt-4 text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            Clean, intuitive interfaces designed for the best Quran reading experience.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+          <!-- Screenshot 1 -->
+          <div class="relative group overflow-hidden rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
+            <img
+              src="https://placehold.co/300x600/1E5128/FFFFFF/png?text=Home+Screen"
+              alt="QuranApp Home Screen"
+              class="w-full h-auto rounded-xl"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4">
+              <h3 class="text-white font-medium">Home Screen</h3>
+            </div>
+          </div>
+          
+          <!-- Screenshot 2 -->
+          <div class="relative group overflow-hidden rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
+            <img
+              src="https://placehold.co/300x600/1E5128/FFFFFF/png?text=Reading+View"
+              alt="QuranApp Reading View"
+              class="w-full h-auto rounded-xl"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4">
+              <h3 class="text-white font-medium">Reading View</h3>
+            </div>
+          </div>
+          
+          <!-- Screenshot 3 -->
+          <div class="relative group overflow-hidden rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
+            <img
+              src="https://placehold.co/300x600/1E5128/FFFFFF/png?text=Translation"
+              alt="QuranApp Translation Interface"
+              class="w-full h-auto rounded-xl"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4">
+              <h3 class="text-white font-medium">Translation Interface</h3>
+            </div>
+          </div>
+          
+          <!-- Screenshot 4 -->
+          <div class="relative group overflow-hidden rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
+            <img
+              src="https://placehold.co/300x600/1E5128/FFFFFF/png?text=Dark+Mode"
+              alt="QuranApp Dark Mode"
+              class="w-full h-auto rounded-xl"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4">
+              <h3 class="text-white font-medium">Dark Mode</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-16 bg-gray-100 dark:bg-gray-800 rounded-xl p-8 text-center">
+          <h3 class="text-2xl font-bold mb-4">Video Demonstration</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-6">
+            Watch how QuranApp can enhance your Quranic study experience.
+          </p>
+          <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden bg-gray-200 dark:bg-gray-700 flex items-center justify-center h-64">
+            <p class="text-gray-500 dark:text-gray-400">Video coming soon</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Support Section -->
+    <section id="support" class="py-20 bg-gray-50 dark:bg-gray-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="section-title mx-auto">Support</h2>
+          <p class="mt-4 text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            Find answers to common questions or reach out for help.
+          </p>
+        </div>
+
+        <div class="max-w-3xl mx-auto mb-16">
+          <h3 class="text-2xl font-bold mb-6">Frequently Asked Questions</h3>
+          
+          <div class="space-y-4 faq-container">
+            <!-- FAQ 1 -->
+            <div class="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+              <button class="faq-question flex justify-between items-center w-full px-6 py-4 text-left font-medium focus:outline-none">
+                <span>Is QuranApp completely free?</span>
+                <svg class="chevron-down h-5 w-5 text-quran" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                <svg class="chevron-up h-5 w-5 text-quran hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+              </button>
+              <div class="faq-answer px-6 pb-4 hidden">
+                <p class="text-gray-600 dark:text-gray-300">Yes, QuranApp is 100% free and open-source with no in-app purchases or subscriptions required.</p>
+              </div>
+            </div>
+            
+            <!-- FAQ 2 -->
+            <div class="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+              <button class="faq-question flex justify-between items-center w-full px-6 py-4 text-left font-medium focus:outline-none">
+                <span>How do I download translations for offline use?</span>
+                <svg class="chevron-down h-5 w-5 text-quran" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                <svg class="chevron-up h-5 w-5 text-quran hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+              </button>
+              <div class="faq-answer px-6 pb-4 hidden">
+                <p class="text-gray-600 dark:text-gray-300">In the app settings, navigate to 'Manage Translations' and select the translations you wish to download. Once downloaded, they'll be available offline.</p>
+              </div>
+            </div>
+            
+            <!-- FAQ 3 -->
+            <div class="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+              <button class="faq-question flex justify-between items-center w-full px-6 py-4 text-left font-medium focus:outline-none">
+                <span>Does QuranApp work without internet connection?</span>
+                <svg class="chevron-down h-5 w-5 text-quran" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                <svg class="chevron-up h-5 w-5 text-quran hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+              </button>
+              <div class="faq-answer px-6 pb-4 hidden">
+                <p class="text-gray-600 dark:text-gray-300">Yes, after the initial setup and downloading your preferred translations and recitations, QuranApp functions completely offline.</p>
+              </div>
+            </div>
+            
+            <!-- FAQ 4 -->
+            <div class="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+              <button class="faq-question flex justify-between items-center w-full px-6 py-4 text-left font-medium focus:outline-none">
+                <span>How can I contribute to the project?</span>
+                <svg class="chevron-down h-5 w-5 text-quran" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                <svg class="chevron-up h-5 w-5 text-quran hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+              </button>
+              <div class="faq-answer px-6 pb-4 hidden">
+                <p class="text-gray-600 dark:text-gray-300">You can contribute by reporting bugs, suggesting features, or submitting code improvements through our GitHub repository.</p>
+              </div>
+            </div>
+            
+            <!-- FAQ 5 -->
+            <div class="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+              <button class="faq-question flex justify-between items-center w-full px-6 py-4 text-left font-medium focus:outline-none">
+                <span>Is the app available for iOS?</span>
+                <svg class="chevron-down h-5 w-5 text-quran" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                <svg class="chevron-up h-5 w-5 text-quran hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+              </button>
+              <div class="faq-answer px-6 pb-4 hidden">
+                <p class="text-gray-600 dark:text-gray-300">Currently, QuranApp is only available for Android. An iOS version is under consideration for future development.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="max-w-4xl mx-auto mb-16">
+          <h3 class="text-2xl font-bold mb-6">Settings Guide</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-8">
+            Learn how to customize your QuranApp experience with these step-by-step instructions.
+          </p>
+          
+          <div class="space-y-4 guide-container">
+            <!-- Guide 1 -->
+            <div class="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+              <button class="guide-question flex justify-between items-center w-full px-6 py-4 text-left font-medium focus:outline-none">
+                <div class="flex items-center">
+                  <svg class="mr-3 h-6 w-6 text-quran" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 12h5"></path><path d="M9 12h5"></path><path d="M16 12h5"></path>
+                    <path d="M11.933 5C11.615 5.326 10.022 7.106 10 7.5"></path>
+                    <path d="M14.341 8.681c.073-.098.123-.168.159-.223 1.877-2.88 3.933-2.521 4.693-2.074.75.442 1.306 2.594.25 5.414"></path>
+                    <path d="M9.5 13.5C7.833 14.333 5 17 5 17"></path><path d="M9.5 13.5c-1-2-1-5.333-1-6.5"></path>
+                    <path d="M9.5 13.5c1-2 1-5.333 1-6.5"></path>
+                  </svg>
+                  <span>App Language</span>
+                </div>
+                <svg class="chevron-down h-5 w-5 text-quran" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                <svg class="chevron-up h-5 w-5 text-quran hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+              </button>
+              <div class="guide-answer px-6 pb-4 hidden">
+                <ol class="list-decimal pl-5 text-gray-600 dark:text-gray-300 space-y-2">
+                  <li>Click on the Menu icon in the top right corner of the app.</li>
+                  <li>Click on Settings.</li>
+                  <li>Under app settings, click on the App Language option.</li>
+                  <li>Select the language you want to use.</li>
+                  <li>Click on the Check Icon on the top right corner.</li>
+                  <li>Confirm the changes.</li>
+                </ol>
+              </div>
+            </div>
+            
+            <!-- Guide 2 -->
+            <div class="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+              <button class="guide-question flex justify-between items-center w-full px-6 py-4 text-left font-medium focus:outline-none">
+                <div class="flex items-center">
+                  <svg class="mr-3 h-6 w-6 text-quran" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 15V7c0-1.1-.9-2-2-2H7a2 2 0 0 0-2 2v8"></path>
+                    <path d="M5 15h14l2 6H3l2-6Z"></path>
+                    <path d="M9 15v1"></path>
+                    <path d="M6.5 12a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
+                    <path d="M17.5 12a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
+                    <path d="M9 5v1"></path>
+                  </svg>
+                  <span>App Theme</span>
+                </div>
+                <svg class="chevron-down h-5 w-5 text-quran" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                <svg class="chevron-up h-5 w-5 text-quran hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+              </button>
+              <div class="guide-answer px-6 pb-4 hidden">
+                <ol class="list-decimal pl-5 text-gray-600 dark:text-gray-300 space-y-2">
+                  <li>Click on the Menu icon in the top right corner of the app.</li>
+                  <li>Click on Settings.</li>
+                  <li>Under app settings, click on the Theme option.</li>
+                  <li>Select the theme you want to use.</li>
+                </ol>
+              </div>
+            </div>
+            
+            <!-- Additional guides would go here -->
+            <!-- Guide 3 -->
+            <div class="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+              <button class="guide-question flex justify-between items-center w-full px-6 py-4 text-left font-medium focus:outline-none">
+                <div class="flex items-center">
+                  <svg class="mr-3 h-6 w-6 text-quran" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 8a6 6 0 0 0-9.33-5"></path>
+                    <path d="m10 3-2 2 2 2"></path>
+                    <path d="M6 16a6 6 0 0 0 9.33 5"></path>
+                    <path d="m14 21 2-2-2-2"></path>
+                    <path d="M12 10v4"></path>
+                    <path d="M12 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"></path>
+                  </svg>
+                  <span>Verse of the Day</span>
+                </div>
+                <svg class="chevron-down h-5 w-5 text-quran" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                <svg class="chevron-up h-5 w-5 text-quran hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+              </button>
+              <div class="guide-answer px-6 pb-4 hidden">
+                <ol class="list-decimal pl-5 text-gray-600 dark:text-gray-300 space-y-2">
+                  <li>Click on the Menu icon in the top right corner of the app.</li>
+                  <li>Click on Settings.</li>
+                  <li>Under app settings, click on the Verse of the Day option.</li>
+                  <li>Select on/off.</li>
+                </ol>
+              </div>
+            </div>
+            
+            <!-- Guide 4 -->
+            <div class="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+              <button class="guide-question flex justify-between items-center w-full px-6 py-4 text-left font-medium focus:outline-none">
+                <div class="flex items-center">
+                  <svg class="mr-3 h-6 w-6 text-quran" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                  </svg>
+                  <span>Translations</span>
+                </div>
+                <svg class="chevron-down h-5 w-5 text-quran" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                <svg class="chevron-up h-5 w-5 text-quran hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+              </button>
+              <div class="guide-answer px-6 pb-4 hidden">
+                <ol class="list-decimal pl-5 text-gray-600 dark:text-gray-300 space-y-2">
+                  <li>Click on the Menu icon in the top right corner of the app.</li>
+                  <li>Click on Settings.</li>
+                  <li>Under reader settings, click on the Translations option.</li>
+                  <li>Select the desired translations.</li>
+                  <li>You can also download more translations by clicking on the download icon on the top right corner.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-md">
+          <h3 class="text-2xl font-bold mb-4">Need More Help?</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-6">
+            If you're experiencing issues or have suggestions, please reach out through one of these channels:
+          </p>
+          
+          <div class="flex flex-col md:flex-row gap-6">
+            <div class="flex-1 p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
+              <h4 class="text-xl font-medium mb-4">Report an Issue</h4>
+              <p class="text-gray-600 dark:text-gray-300 mb-4">
+                Found a bug? Let us know so we can fix it.
+              </p>
+              <button class="w-full px-4 py-2 bg-quran hover:bg-quran-600 text-white rounded transition-colors">
+                Submit Bug Report
+              </button>
+            </div>
+            
+            <div class="flex-1 p-6 border border-gray-200 dark:border-gray-700 rounded-lg">
+              <h4 class="text-xl font-medium mb-4">GitHub Repository</h4>
+              <p class="text-gray-600 dark:text-gray-300 mb-4">
+                View the source code or contribute to the project.
+              </p>
+              <button class="w-full px-4 py-2 border border-quran text-quran hover:bg-quran-50 dark:hover:bg-gray-700 rounded flex items-center justify-center transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+                Visit GitHub
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Privacy Section -->
+    <section id="privacy" class="py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="section-title mx-auto">Privacy Policy</h2>
+          <p class="mt-4 text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            Last updated: February 13, 2023
+          </p>
+        </div>
+
+        <div class="max-w-3xl mx-auto">
+          <div class="space-y-12">
+            <div>
+              <h3 class="text-2xl font-bold mb-4">Permissions</h3>
+              <p class="text-gray-600 dark:text-gray-300">
+                We currently do not ask for any special permissions of your device such as GPS, camera, contacts, storage etc, because the App currently does not rely on them.
+              </p>
+            </div>
+            
+            <div>
+              <h3 class="text-2xl font-bold mb-4">Data Safety</h3>
+              <p class="text-gray-600 dark:text-gray-300">
+                We are committed to protect your personal information and your right to privacy. We do not collect, store or share your personal information. We do not share your information with third-parties.
+              </p>
+            </div>
+            
+            <div>
+              <h3 class="text-2xl font-bold mb-4">What We Don't Collect</h3>
+              <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
+                <ul class="list-disc pl-5 text-gray-600 dark:text-gray-300 space-y-2">
+                  <li>We don't track your activity or usage patterns</li>
+                  <li>We don't collect your location data</li>
+                  <li>We don't access your contacts or other personal information</li>
+                  <li>We don't read or write to your device storage without permission</li>
+                  <li>We don't use cookies or web beacons to track you</li>
+                  <li>We don't share any data with third parties or advertisers</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div>
+              <h3 class="text-2xl font-bold mb-4">Third-Party Services</h3>
+              <p class="text-gray-600 dark:text-gray-300">
+                QuranApp doesn't integrate with any third-party services that could compromise your privacy. We don't include any analytics, tracking, or advertising frameworks in our application.
+              </p>
+            </div>
+            
+            <div>
+              <h3 class="text-2xl font-bold mb-4">Contact Us</h3>
+              <p class="text-gray-600 dark:text-gray-300">
+                If you want further information about our Privacy Policy, please feel free to contact us at <a href="mailto:alfaazplus@gmail.com" class="text-quran hover:underline">alfaazplus@gmail.com</a> or create an issue on <a href="#" class="text-quran hover:underline">GitHub</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50 dark:bg-gray-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="section-title mx-auto">About</h2>
+          <p class="mt-4 text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            Learn more about our mission and the team behind QuranApp.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+            <div class="p-8">
+              <h3 class="text-2xl font-bold mb-6">About the Qur'an</h3>
+              
+              <p class="text-gray-600 dark:text-gray-300 mb-6">
+                The Noble Quran is the central religious text of Islam. Muslims believe the Qur'an is the book of Divine guidance and direction for mankind, and consider the original Arabic text the final revelation of Allah (God).
+              </p>
+              
+              <p class="text-gray-600 dark:text-gray-300">
+                It is widely regarded as the finest work in classical Arabic literature. It is organized in 114 chapters (surah سورة), which consist of verses (ayah آية).
+              </p>
+            </div>
+          </div>
+          
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+            <div class="p-8">
+              <h3 class="text-2xl font-bold mb-6">About QuranApp</h3>
+              
+              <p class="text-gray-600 dark:text-gray-300 mb-6">
+                The QuranApp is an ad-free and privacy-focused mobile application that facilitates exploring the Qur'an on daily basis at any time and place. Its easy-to-navigate and neat and clean design helps users to overcome the difficulties of reading the Qur'an in the time of technology.
+              </p>
+              
+              <p class="text-gray-600 dark:text-gray-300">
+                The QuranApp focuses on the latest technologies to aim at providing comprehensive convenience to the users. This app has translations in several languages so that people of different languages and regions can understand the purpose of the Qur'an. All translations of the original Arabic text are thus interpretations of the original meanings and should be embraced as such. This app is licensed under GPL v3.0.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+            <div class="p-8">
+              <h3 class="text-2xl font-bold mb-6">Credits</h3>
+              
+              <p class="text-gray-600 dark:text-gray-300 mb-6">
+                The QuranApp was made possible with the will of Allah (Subhan wa Ta'ala) and is originally developed by Faisal Khan. It took about 10 months to first launch it.
+              </p>
+              
+              <p class="text-gray-600 dark:text-gray-300 mb-6">
+                Data sources for the development of this app include QuranEnc, Tanzil, quran.com API and other online verified Quran projects.
+              </p>
+              
+              <p class="text-gray-600 dark:text-gray-300">
+                We made the QuranApp open source on January 26, 2023. After this event many people have contributed to the app. The contributions include app translations and more. To know about the contributors, visit the GitHub page.
+              </p>
+            </div>
+          </div>
+          
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+            <div class="p-8">
+              <h3 class="text-2xl font-bold mb-6">Contribution</h3>
+              
+              <p class="text-gray-600 dark:text-gray-300 mb-6">
+                Whether you have an idea for new features or want to fix an issue and if you would like to contribute to the QuranApp, you can get started by reading the contribution guidelines on GitHub.
+              </p>
+              
+              <p class="text-gray-600 dark:text-gray-300 mb-6">
+                Read more about the QuranApp on GitHub. To report bugs/issues you can visit the issues page.
+              </p>
+              
+              <p class="text-gray-600 dark:text-gray-300">
+                If you want to report a specific issue with translations or other resources in the app, kindly visit the Verse Report section on GitHub.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feedback Section -->
+    <section id="feedback" class="py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="section-title mx-auto">Feedback</h2>
+          <p class="mt-4 text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            We value your input! Share your thoughts to help us improve QuranApp.
+          </p>
+        </div>
+
+        <div class="max-w-2xl mx-auto bg-white dark:bg-gray-800 shadow-md rounded-xl overflow-hidden">
+          <div class="p-8">
+            <form id="feedback-form" class="space-y-6">
+              <div>
+                <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Name
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  placeholder="Your name"
+                  required
+                  class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                />
+              </div>
+              
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Email
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="your.email@example.com"
+                  required
+                  class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                />
+              </div>
+              
+              <div>
+                <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Your feedback, suggestions, or questions..."
+                  required
+                  class="w-full min-h-[150px] px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                ></textarea>
+              </div>
+              
+              <button 
+                type="submit" 
+                class="w-full px-4 py-2 bg-quran hover:bg-quran-600 text-white rounded-md transition-colors"
+              >
+                Submit Feedback
+              </button>
+              
+              <div id="feedback-message" class="hidden py-3 px-4 bg-green-50 text-green-800 rounded-md"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-50 dark:bg-gray-900 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-6 md:mb-0">
+          <span class="text-quran dark:text-quran-300 font-bold text-2xl font-amiri">
+            QuranApp
+          </span>
+          <p class="text-gray-600 dark:text-gray-400 mt-2">
+            Privacy-focused Qur'an reader
+          </p>
+        </div>
+        
+        <div class="flex space-x-6">
+          <a 
+            href="#" 
+            class="text-gray-600 dark:text-gray-400 hover:text-quran dark:hover:text-quran-300 transition-colors"
+            aria-label="GitHub"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700 flex flex-col md:flex-row justify-between">
+        <div class="mb-4 md:mb-0">
+          <p class="text-gray-600 dark:text-gray-400">
+            © <span id="current-year"></span> QuranApp. All rights reserved.
+          </p>
+        </div>
+        
+        <div class="flex flex-wrap gap-6">
+          <a href="#privacy" class="text-gray-600 dark:text-gray-400 hover:text-quran dark:hover:text-quran-300 transition-colors">
+            Privacy Policy
+          </a>
+          <a href="#support" class="text-gray-600 dark:text-gray-400 hover:text-quran dark:hover:text-quran-300 transition-colors">
+            Support
+          </a>
+          <a href="#feedback" class="text-gray-600 dark:text-gray-400 hover:text-quran dark:hover:text-quran-300 transition-colors">
+            Feedback
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Initialize theme from localStorage or system preference
+    document.addEventListener('DOMContentLoaded', function() {
+      // Set current year in footer
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+      
+      // Theme toggle functionality
+      const isDarkMode = localStorage.getItem('theme') === 'dark' || 
+                        (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      
+      if (isDarkMode) {
+        document.documentElement.classList.add('dark');
+        toggleThemeIcons(true);
+      } else {
+        document.documentElement.classList.remove('dark');
+        toggleThemeIcons(false);
+      }
+      
+      // Toggle theme buttons
+      document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+      document.getElementById('theme-toggle-mobile').addEventListener('click', toggleTheme);
+      
+      // Mobile menu toggle
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const menuIcon = document.getElementById('menu-icon');
+      const closeIcon = document.getElementById('close-icon');
+      
+      mobileMenuButton.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.toggle('hidden');
+        menuIcon.classList.toggle('hidden', !isOpen);
+        closeIcon.classList.toggle('hidden', isOpen);
+      });
+      
+      // Handle navigation link clicks (close mobile menu)
+      document.querySelectorAll('#mobile-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          menuIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+        });
+      });
+      
+      // Explore features button
+      document.getElementById('explore-features').addEventListener('click', () => {
+        document.getElementById('features').scrollIntoView({ behavior: 'smooth' });
+      });
+      
+      // Handle FAQ toggling
+      const faqQuestions = document.querySelectorAll('.faq-question');
+      faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+          const answer = question.nextElementSibling;
+          const isOpen = !answer.classList.contains('hidden');
+          
+          // Toggle answer visibility
+          answer.classList.toggle('hidden', isOpen);
+          
+          // Toggle chevron icons
+          const chevronDown = question.querySelector('.chevron-down');
+          const chevronUp = question.querySelector('.chevron-up');
+          chevronDown.classList.toggle('hidden', !isOpen);
+          chevronUp.classList.toggle('hidden', isOpen);
+        });
+      });
+      
+      // Handle Settings Guide toggling
+      const guideQuestions = document.querySelectorAll('.guide-question');
+      guideQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+          const answer = question.nextElementSibling;
+          const isOpen = !answer.classList.contains('hidden');
+          
+          // Toggle answer visibility
+          answer.classList.toggle('hidden', isOpen);
+          
+          // Toggle chevron icons
+          const chevronDown = question.querySelector('.chevron-down');
+          const chevronUp = question.querySelector('.chevron-up');
+          chevronDown.classList.toggle('hidden', !isOpen);
+          chevronUp.classList.toggle('hidden', isOpen);
+        });
+      });
+      
+      // Handle feedback form submission
+      const feedbackForm = document.getElementById('feedback-form');
+      const feedbackMessage = document.getElementById('feedback-message');
+      
+      feedbackForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = {
+          name: document.getElementById('name').value,
+          email: document.getElementById('email').value,
+          message: document.getElementById('message').value,
+          date: new Date().toISOString()
+        };
+        
+        // Store in localStorage (in a real app, you'd send to a server)
+        const feedback = JSON.parse(localStorage.getItem('feedback') || '[]');
+        feedback.push(formData);
+        localStorage.setItem('feedback', JSON.stringify(feedback));
+        
+        // Reset form
+        feedbackForm.reset();
+        
+        // Show success message
+        feedbackMessage.textContent = "Thank you for your feedback!";
+        feedbackMessage.classList.remove('hidden');
+        
+        // Hide message after 3 seconds
+        setTimeout(() => {
+          feedbackMessage.classList.add('hidden');
+        }, 3000);
+      });
+      
+      // Handle scroll for header background
+      window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 10) {
+          header.classList.add('bg-white/90', 'dark:bg-gray-900/90', 'backdrop-blur-md', 'shadow-sm');
+        } else {
+          header.classList.remove('bg-white/90', 'dark:bg-gray-900/90', 'backdrop-blur-md', 'shadow-sm');
+        }
+        
+        // Update active nav link based on scroll position
+        const sections = document.querySelectorAll('section[id]');
+        let currentSectionId = 'home';
+        
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 100;
+          const sectionHeight = section.offsetHeight;
+          
+          if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+            currentSectionId = section.getAttribute('id');
+          }
+        });
+        
+        // Update desktop nav links
+        document.querySelectorAll('nav a').forEach(link => {
+          const href = link.getAttribute('href').substring(1);
+          if (href === currentSectionId) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+        
+        // Update mobile nav links
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+          const href = link.getAttribute('href').substring(1);
+          if (href === currentSectionId) {
+            link.classList.add('text-quran', 'dark:text-quran-300', 'bg-quran-50', 'dark:bg-gray-800');
+            link.classList.remove('text-gray-700', 'dark:text-gray-200', 'hover:bg-gray-100', 'dark:hover:bg-gray-800');
+          } else {
+            link.classList.remove('text-quran', 'dark:text-quran-300', 'bg-quran-50', 'dark:bg-gray-800');
+            link.classList.add('text-gray-700', 'dark:text-gray-200', 'hover:bg-gray-100', 'dark:hover:bg-gray-800');
+          }
+        });
+      });
+      
+      // Trigger scroll event to initialize the header state
+      window.dispatchEvent(new Event('scroll'));
+    });
+    
+    // Toggle theme function
+    function toggleTheme() {
+      const isDarkMode = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+      
+      toggleThemeIcons(isDarkMode);
+    }
+    
+    function toggleThemeIcons(isDarkMode) {
+      // Update desktop theme toggle icons
+      document.getElementById('moon-icon').classList.toggle('hidden', isDarkMode);
+      document.getElementById('sun-icon').classList.toggle('hidden', !isDarkMode);
+      
+      // Update mobile theme toggle icons
+      document.getElementById('moon-icon-mobile').classList.toggle('hidden', isDarkMode);
+      document.getElementById('sun-icon-mobile').classList.toggle('hidden', !isDarkMode);
+    }
+  </script>
+</body>
+</html>
