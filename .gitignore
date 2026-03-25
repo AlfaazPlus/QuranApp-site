@@ -1,15 +1,19 @@
-# dependencies
-/node_modules
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
-# testing
-/coverage
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 
-# production
-/build
-/dist
-
-# misc
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# Temporary files
+*.tmp
+*.temp
