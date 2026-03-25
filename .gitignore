@@ -17,3 +17,6 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.temp
+.vite/
+dist/
+node_modules/
