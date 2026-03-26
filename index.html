@@ -6,14 +6,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>QuranApp - Read, Listen, and Understand the Qur'an Privately</title>
   <link rel="icon" type="image/x-icon" href="/images/siteicons/icon.svg" />
+  <link rel="canonical" href="https://quran.alfaazplus.com/" />
   <meta name="description"
     content="Privacy-focused QuranApp with no ads, tracking, or data collection. Features 30+ translations, 15+ recitations, and offline support." />
+  <meta name="keywords"
+    content="Quran app, Qur'an reader, Android Quran, offline Quran, Quran translation, tafsir, Islamic app, privacy, open source, ad-free Quran" />
   <meta name="author" content="QuranApp Team" />
-  <meta property="og:image" content="/images/og.webp" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="QuranApp" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:url" content="https://quran.alfaazplus.com/" />
   <meta property="og:title" content="QuranApp - Privacy-Focused Qur'an Reader" />
   <meta property="og:description"
     content="Read, listen, and understand the Qur'an privately with no ads or tracking." />
+  <meta property="og:image" content="https://quran.alfaazplus.com/images/og.webp" />
+  <meta property="og:image:alt" content="QuranApp — privacy-focused Qur'an reader for Android" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="QuranApp - Privacy-Focused Qur'an Reader" />
+  <meta name="twitter:description"
+    content="Read, listen, and understand the Qur'an privately with no ads or tracking." />
+  <meta name="twitter:image" content="https://quran.alfaazplus.com/images/og.webp" />
+  <link rel="alternate" hreflang="en" href="https://quran.alfaazplus.com/" />
+  <link rel="alternate" hreflang="x-default" href="https://quran.alfaazplus.com/" />
   <meta name="theme-color" content="#008B5B" />
+  <meta name="apple-mobile-web-app-title" content="QuranApp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
   <!-- Tailwind CSS from CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -92,6 +112,91 @@
     };
   </script>
 
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://quran.alfaazplus.com/",
+          "url": "https://quran.alfaazplus.com/",
+          "name": "QuranApp",
+          "description": "Privacy-focused Qur'an reader for Android with translations, recitations, and offline support.",
+          "inLanguage": "en",
+          "publisher": { "@id": "https://alfaazplus.com/" }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "QuranApp",
+          "operatingSystem": "Android",
+          "applicationCategory": "EducationApplication",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "description": "Privacy-focused Qur'an reader with 30+ translations, 15+ recitations, offline support, search, and tafsir. No ads or tracking.",
+          "screenshot": "https://quran.alfaazplus.com/images/screenshots/ss1.webp",
+          "downloadUrl": "https://play.google.com/store/apps/details?id=com.quranapp.android",
+          "installUrl": "https://play.google.com/store/apps/details?id=com.quranapp.android",
+          "author": { "@id": "https://alfaazplus.com/" },
+          "isAccessibleForFree": true,
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": 5,
+            "bestRating": 5,
+            "ratingCount": 204
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Is QuranApp completely free?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, QuranApp is 100% free and open-source with no in-app purchases or subscriptions required."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How do I download translations for offline use?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "In the app settings, navigate to 'Manage Translations' and select the translations you wish to download. Once downloaded, they'll be available offline."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does QuranApp work without internet connection?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, after the initial setup and downloading your preferred translations and recitations, QuranApp functions completely offline."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How can I contribute to the project?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "You can contribute by reporting bugs, suggesting features, or submitting code improvements through the QuranApp GitHub repository."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is the app available for iOS?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Currently, QuranApp is only available for Android. An iOS version is under consideration for future development."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  </script>
+
   <style>
     body {
       font-family: "Outfit", sans-serif;
@@ -139,7 +244,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between gap-2 min-w-0 h-16 md:h-20">
         <a href="/" class="flex min-w-0 flex-1 items-center gap-2 md:flex-none md:flex-shrink-0">
-          <img src="/images/siteicons/icon.svg" alt="" class="h-10 w-10 shrink-0 sm:h-12 sm:w-12" />
+          <img src="/images/siteicons/icon.svg" alt="QuranApp logo" class="h-10 w-10 shrink-0 sm:h-12 sm:w-12" width="48" height="48" />
           <div class="flex min-w-0 flex-col">
             <span class="text-lg font-bold leading-tight truncate sm:text-2xl">QuranApp</span>
             <span class="leading-tight text-xs truncate sm:text-sm">Read & explore</span>
