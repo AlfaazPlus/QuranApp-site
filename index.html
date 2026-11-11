@@ -188,7 +188,23 @@
               "name": "Is the app available for iOS?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Currently, QuranApp is only available for Android. An iOS version is under consideration for future development."
+                "text": "Not yet. QuranApp is Android only. An iOS app is what we want to build next. If you would like to help with that development, please donate."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does QuranApp show ads or collect my data?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. QuranApp has no ads, no in-app purchases, and no analytics or tracking. It does not collect or share personal data. Internet access is used to download the translations, tafsirs, and recitations you choose. The only permission it asks for is notifications, so the daily verse reminder can be shown."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do I need an account?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. There is no sign-in. Bookmarks, notes, collections, and settings stay on your device. You can export them to a file and import that file on another phone, or turn on auto backup to a file you choose."
               }
             }
           ]
@@ -419,8 +435,7 @@
         <div class="text-center mb-16">
           <h2 class="section-title mx-auto">Features</h2>
           <p class="mt-4 text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            QuranApp is designed with simplicity and privacy at its core,
-            offering powerful features without compromising your data.
+            Read, listen, and study with the tools built into QuranApp.
           </p>
         </div>
 
@@ -430,13 +445,15 @@
             <div class="mb-4">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-quran" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold mb-2">No Ads, No Tracking</h3>
+            <h3 class="text-xl font-bold mb-2">Translations</h3>
             <p class="text-gray-600 dark:text-gray-300">
-              Completely free of advertisements, trackers, and unnecessary
-              permissions.
+              51 translations in 25 languages. Read several together, and open
+              footnotes and referenced verses in place.
             </p>
           </div>
 
@@ -445,16 +462,14 @@
             <div class="mb-4">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-quran" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
-                <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
-                <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
-                <line x1="12" y1="20" x2="12" y2="20"></line>
+                <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold mb-2">Offline Support</h3>
+            <h3 class="text-xl font-bold mb-2">Recitations</h3>
             <p class="text-gray-600 dark:text-gray-300">
-              Multiple translations and recitations available offline after
-              initial download.
+              21 recitations and translation audio. Repeat verses, change the
+              speed, and keep listening in the background.
             </p>
           </div>
 
@@ -463,14 +478,13 @@
             <div class="mb-4">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-quran" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold mb-2">Advanced Search & Tafsir</h3>
+            <h3 class="text-xl font-bold mb-2">Tafsir</h3>
             <p class="text-gray-600 dark:text-gray-300">
-              Powerful search functionality and in-depth tafsir for deeper
-              understanding.
+              10 tafsirs in 6 languages, ready offline after you download them.
             </p>
           </div>
 
@@ -479,19 +493,14 @@
             <div class="mb-4">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-quran" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="13.5" cy="6.5" r="1.5"></circle>
-                <circle cx="17.5" cy="10.5" r="1.5"></circle>
-                <circle cx="8.5" cy="7.5" r="1.5"></circle>
-                <circle cx="6.5" cy="12.5" r="1.5"></circle>
-                <path
-                  d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z">
-                </path>
+                <polyline points="4 7 4 4 20 4 20 7"></polyline>
+                <line x1="9" y1="20" x2="15" y2="20"></line>
+                <line x1="12" y1="4" x2="12" y2="20"></line>
               </svg>
             </div>
-            <h3 class="text-xl font-bold mb-2">Customizable UI</h3>
+            <h3 class="text-xl font-bold mb-2">Word by Word</h3>
             <p class="text-gray-600 dark:text-gray-300">
-              Personalize with dark mode, font styles, and various layout
-              options.
+              Meanings, transliteration, and word audio in 14 languages.
             </p>
           </div>
 
@@ -500,12 +509,14 @@
             <div class="mb-4">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-quran" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold mb-2">Bookmarking & Reminders</h3>
+            <h3 class="text-xl font-bold mb-2">Reading Layout</h3>
             <p class="text-gray-600 dark:text-gray-300">
-              Save your favorite verses and set daily reading reminders.
+              Verse by verse or mushaf, by chapter, juz, or hizb. Uthmani,
+              Indopak, and KFQPC scripts, with adjustable text size.
             </p>
           </div>
 
@@ -514,14 +525,15 @@
             <div class="mb-4">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-quran" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               </svg>
             </div>
-            <h3 class="text-xl font-bold mb-2">Privacy-First Approach</h3>
+            <h3 class="text-xl font-bold mb-2">Search & Bookmarks</h3>
             <p class="text-gray-600 dark:text-gray-300">
-              All your data remains secure on your device, never uploaded to
-              servers.
+              Search the Arabic text and translations, including by voice.
+              Save a verse or a range, add notes, and group verses into
+              collections.
             </p>
           </div>
         </div>
@@ -724,8 +736,59 @@
               </button>
               <div class="faq-answer px-6 pb-4 hidden">
                 <p class="text-gray-600 dark:text-gray-300">
-                  Currently, QuranApp is only available for Android. An iOS
-                  version is under consideration for future development.
+                  Not yet. QuranApp is Android only. An iOS app is what we want
+                  to build next. If you would like to help with that development,
+                  please <a href="https://donate.alfaazplus.com/?ref=quran" target="_blank" rel="noopener"
+                    class="text-quran hover:underline">donate</a>.
+                </p>
+              </div>
+            </div>
+
+            <!-- FAQ 6 -->
+            <div class="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+              <button
+                class="faq-question flex justify-between items-center w-full px-6 py-4 text-left font-medium focus:outline-none">
+                <span>Does QuranApp show ads or collect my data?</span>
+                <svg class="chevron-down h-5 w-5 text-quran" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+                <svg class="chevron-up h-5 w-5 text-quran hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+              </button>
+              <div class="faq-answer px-6 pb-4 hidden">
+                <p class="text-gray-600 dark:text-gray-300">
+                  No. QuranApp has no ads, no in-app purchases, and no analytics
+                  or tracking. It does not collect or share personal data.
+                  Internet access is used to download the translations, tafsirs,
+                  and recitations you choose. The only permission it asks for is
+                  notifications, so the daily verse reminder can be shown.
+                </p>
+              </div>
+            </div>
+
+            <!-- FAQ 7 -->
+            <div class="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+              <button
+                class="faq-question flex justify-between items-center w-full px-6 py-4 text-left font-medium focus:outline-none">
+                <span>Do I need an account?</span>
+                <svg class="chevron-down h-5 w-5 text-quran" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+                <svg class="chevron-up h-5 w-5 text-quran hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+              </button>
+              <div class="faq-answer px-6 pb-4 hidden">
+                <p class="text-gray-600 dark:text-gray-300">
+                  No. There is no sign-in. Bookmarks, notes, collections, and
+                  settings stay on your device. You can export them to a file
+                  and import that file on another phone, or turn on auto backup
+                  to a file you choose.
                 </p>
               </div>
             </div>
@@ -771,16 +834,11 @@
               </button>
               <div class="guide-answer px-6 pb-4 hidden">
                 <ol class="list-decimal pl-5 text-gray-600 dark:text-gray-300 space-y-2">
-                  <li>
-                    Click on the Menu icon in the top right corner of the app.
-                  </li>
-                  <li>Click on Settings.</li>
-                  <li>
-                    Under app settings, click on the App Language option.
-                  </li>
-                  <li>Select the language you want to use.</li>
-                  <li>Click on the Check Icon on the top right corner.</li>
-                  <li>Confirm the changes.</li>
+                  <li>Tap the menu icon in the top right corner.</li>
+                  <li>Tap Settings.</li>
+                  <li>Under App Settings, tap App Language.</li>
+                  <li>Tap the language you want. The change applies immediately.</li>
+                  <li>If numeral styles are shown, tap the one you want.</li>
                 </ol>
               </div>
             </div>
@@ -799,7 +857,7 @@
                     <path d="M17.5 12a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
                     <path d="M9 5v1"></path>
                   </svg>
-                  <span>App Theme</span>
+                  <span>Theme</span>
                 </div>
                 <svg class="chevron-down h-5 w-5 text-quran" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                   fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -812,12 +870,11 @@
               </button>
               <div class="guide-answer px-6 pb-4 hidden">
                 <ol class="list-decimal pl-5 text-gray-600 dark:text-gray-300 space-y-2">
-                  <li>
-                    Click on the Menu icon in the top right corner of the app.
-                  </li>
-                  <li>Click on Settings.</li>
-                  <li>Under app settings, click on the Theme option.</li>
-                  <li>Select the theme you want to use.</li>
+                  <li>Tap the menu icon in the top right corner.</li>
+                  <li>Tap Settings.</li>
+                  <li>Under App Settings, tap Theme.</li>
+                  <li>Tap Theme Mode and choose System Default, Light, or Dark.</li>
+                  <li>Choose a theme color, or turn on Dynamic color to follow your system colors.</li>
                 </ol>
               </div>
             </div>
@@ -850,14 +907,11 @@
               </button>
               <div class="guide-answer px-6 pb-4 hidden">
                 <ol class="list-decimal pl-5 text-gray-600 dark:text-gray-300 space-y-2">
-                  <li>
-                    Click on the Menu icon in the top right corner of the app.
-                  </li>
-                  <li>Click on Settings.</li>
-                  <li>
-                    Under app settings, click on the Verse of the Day option.
-                  </li>
-                  <li>Select on/off.</li>
+                  <li>Tap the menu icon in the top right corner.</li>
+                  <li>Tap Settings.</li>
+                  <li>Under App Settings, tap Verse of The Day.</li>
+                  <li>Choose On or Off.</li>
+                  <li>Turning it on may ask for notification permission.</li>
                 </ol>
               </div>
             </div>
@@ -885,18 +939,138 @@
               </button>
               <div class="guide-answer px-6 pb-4 hidden">
                 <ol class="list-decimal pl-5 text-gray-600 dark:text-gray-300 space-y-2">
-                  <li>
-                    Click on the Menu icon in the top right corner of the app.
-                  </li>
-                  <li>Click on Settings.</li>
-                  <li>
-                    Under reader settings, click on the Translations option.
-                  </li>
-                  <li>Select the desired translations.</li>
-                  <li>
-                    You can also download more translations by clicking on the
-                    download icon on the top right corner.
-                  </li>
+                  <li>Tap the menu icon in the top right corner.</li>
+                  <li>Tap Settings.</li>
+                  <li>Under Reader Settings, tap Translations.</li>
+                  <li>Select the translations you want to read.</li>
+                  <li>Tap Download to get more. Downloaded translations work offline.</li>
+                </ol>
+              </div>
+            </div>
+
+            <!-- Guide 5 -->
+            <div class="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+              <button
+                class="guide-question flex justify-between items-center w-full px-6 py-4 text-left font-medium focus:outline-none">
+                <div class="flex items-center">
+                  <svg class="mr-3 h-6 w-6 text-quran" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                  </svg>
+                  <span>Tafsir</span>
+                </div>
+                <svg class="chevron-down h-5 w-5 text-quran" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+                <svg class="chevron-up h-5 w-5 text-quran hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+              </button>
+              <div class="guide-answer px-6 pb-4 hidden">
+                <ol class="list-decimal pl-5 text-gray-600 dark:text-gray-300 space-y-2">
+                  <li>Tap the menu icon in the top right corner.</li>
+                  <li>Tap Settings.</li>
+                  <li>Under Reader Settings, tap Tafsir.</li>
+                  <li>Select a tafsir. Download it first if it is not on the device.</li>
+                </ol>
+              </div>
+            </div>
+
+            <!-- Guide 6 -->
+            <div class="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+              <button
+                class="guide-question flex justify-between items-center w-full px-6 py-4 text-left font-medium focus:outline-none">
+                <div class="flex items-center">
+                  <svg class="mr-3 h-6 w-6 text-quran" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="4 7 4 4 20 4 20 7"></polyline>
+                    <line x1="9" y1="20" x2="15" y2="20"></line>
+                    <line x1="12" y1="4" x2="12" y2="20"></line>
+                  </svg>
+                  <span>Scripts</span>
+                </div>
+                <svg class="chevron-down h-5 w-5 text-quran" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+                <svg class="chevron-up h-5 w-5 text-quran hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+              </button>
+              <div class="guide-answer px-6 pb-4 hidden">
+                <ol class="list-decimal pl-5 text-gray-600 dark:text-gray-300 space-y-2">
+                  <li>Tap the menu icon in the top right corner.</li>
+                  <li>Tap Settings.</li>
+                  <li>Under Reader Settings, tap Scripts.</li>
+                  <li>Select a script. Some scripts download their font before they can be used.</li>
+                </ol>
+              </div>
+            </div>
+
+            <!-- Guide 7 -->
+            <div class="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+              <button
+                class="guide-question flex justify-between items-center w-full px-6 py-4 text-left font-medium focus:outline-none">
+                <div class="flex items-center">
+                  <svg class="mr-3 h-6 w-6 text-quran" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="17" y1="10" x2="3" y2="10"></line>
+                    <line x1="21" y1="6" x2="3" y2="6"></line>
+                    <line x1="21" y1="14" x2="3" y2="14"></line>
+                    <line x1="17" y1="18" x2="3" y2="18"></line>
+                  </svg>
+                  <span>Word by Word</span>
+                </div>
+                <svg class="chevron-down h-5 w-5 text-quran" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+                <svg class="chevron-up h-5 w-5 text-quran hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+              </button>
+              <div class="guide-answer px-6 pb-4 hidden">
+                <ol class="list-decimal pl-5 text-gray-600 dark:text-gray-300 space-y-2">
+                  <li>Tap the menu icon in the top right corner.</li>
+                  <li>Tap Settings.</li>
+                  <li>Under Reader Settings, tap Word by Word.</li>
+                  <li>Choose a language, then turn translation, transliteration, or word audio on or off.</li>
+                </ol>
+              </div>
+            </div>
+
+            <!-- Guide 8 -->
+            <div class="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+              <button
+                class="guide-question flex justify-between items-center w-full px-6 py-4 text-left font-medium focus:outline-none">
+                <div class="flex items-center">
+                  <svg class="mr-3 h-6 w-6 text-quran" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                    <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+                  </svg>
+                  <span>Recitations</span>
+                </div>
+                <svg class="chevron-down h-5 w-5 text-quran" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+                <svg class="chevron-up h-5 w-5 text-quran hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+              </button>
+              <div class="guide-answer px-6 pb-4 hidden">
+                <ol class="list-decimal pl-5 text-gray-600 dark:text-gray-300 space-y-2">
+                  <li>Tap the menu icon in the top right corner.</li>
+                  <li>Tap Settings.</li>
+                  <li>Under Other Settings, tap Download Recitations.</li>
+                  <li>Choose a reciter and download the audio you want to keep offline.</li>
                 </ol>
               </div>
             </div>
